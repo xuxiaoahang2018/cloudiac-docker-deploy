@@ -19,3 +19,9 @@ terraform apply
 
 运行完成以上步骤后将在北京区域创建一台ecs，根据该ecs的公网ip 直接访问80端口即可访问部署CloudIac服务.
 
+
+
+## 在已有机器上一键部署
+
+如果您已经拥有一台linux 服务器，那么我们提供了一键部署脚本:
+curl https://cloudiac.oss-cn-beijing.aliyuncs.com/Cloudiac.sh | sh
