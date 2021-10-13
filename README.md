@@ -24,4 +24,6 @@ terraform apply
 ## 在已有机器上一键部署
 
 如果您已经拥有一台linux 服务器，那么我们提供了一键部署脚本:
+```
 curl https://cloudiac.oss-cn-beijing.aliyuncs.com/Cloudiac.sh | sh
+```
