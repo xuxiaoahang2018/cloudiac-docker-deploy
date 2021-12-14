@@ -12,3 +12,43 @@ variable "instance_name" {
   default = "tf_ecs_test"
   description = "创建的ecs服务器名称"
 }
+
+variable "availability_zone" {
+  default = "cn-beijing-b"
+  description = "可用区域"
+}
+
+variable "security_group_name" {
+  default = "yunji_default"
+  description = "安全组名称"
+}
+
+variable "iac_portal" {
+  default = "cloudiac/iac-portal:latest"
+  description = "iac-portal 镜像地址以及版本"
+}
+
+variable "ct_runner" {
+  default = "cloudiac/ct-runner:latest"
+  description = "ct-runner 镜像地址以及版本"
+}
+
+variable "ct_worker" {
+  default = "cloudiac/ct-worker:latest"
+  description = "ct-worker 镜像地址以及版本"
+}
+
+variable "iac_web" {
+  default = "cloudiac/iac-web:latest"
+  description = "iac-web 镜像地址以及版本"
+}
+
+variable "mysql" {
+  default = "mysql:5.7"
+  description = "mysql 镜像地址以及版本"
+}
+
+variable "consul" {
+  default = "consul:latest"
+  description = "consul 镜像地址以及版本"
+}

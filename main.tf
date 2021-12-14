@@ -6,17 +6,16 @@ resource "alicloud_vpc" "vpc" {
 resource "alicloud_vswitch" "vsw" {
   vpc_id            = alicloud_vpc.vpc.id
   cidr_block        = "172.16.0.0/21"
-  zone_id = "cn-beijing-b"
+  zone_id = var.availability_zone
 }
 
 resource "alicloud_security_group" "default" {
-  name = "default"
+  name = var.security_group_name
   vpc_id = alicloud_vpc.vpc.id
 }
 
 resource "alicloud_instance" "instance" {
-  # cn-beijing
-  availability_zone = "cn-beijing-b"
+  availability_zone = var.availability_zone
   security_groups = alicloud_security_group.default.*.id
   # series III
   instance_type        = var.instance_type
@@ -26,19 +25,26 @@ resource "alicloud_instance" "instance" {
   vswitch_id = alicloud_vswitch.vsw.id
   internet_max_bandwidth_out = 1
   password            = "User@123"
-    provisioner  "remote-exec" {
+  provisioner  "remote-exec" {
    connection {
      type = "ssh"
      host = alicloud_instance.instance.public_ip
      user = "root"
      password = "User@123"
    }
-   inline = ["curl https://cloudiac.oss-cn-beijing.aliyuncs.com/Cloudiac.sh | sh"]
+
+   inline = [
+      "export iac_portal=${var.iac_portal}",
+      "export ct_runner=${var.ct_runner}",
+      "export ct_worker=${var.ct_worker}",
+      "export iac_web=${var.iac_web}",
+      "export mysql=${var.mysql}",
+      "export consul=${var.consul}",
+      "curl https://cloudiac.oss-cn-beijing.aliyuncs.com/docker_deploy_new.sh | sh",
+   ]
   }
 	
 }
-  
-
 
 resource "alicloud_security_group_rule" "allow_all_tcp" {
   type              = "ingress"
