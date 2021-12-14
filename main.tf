@@ -24,15 +24,14 @@ resource "alicloud_instance" "instance" {
   instance_name        = var.instance_name
   vswitch_id = alicloud_vswitch.vsw.id
   internet_max_bandwidth_out = 1
-  password            = "User@123"
+  password            = var.password
   provisioner  "remote-exec" {
    connection {
      type = "ssh"
      host = alicloud_instance.instance.public_ip
-     user = "root"
-     password = "User@123"
+     user = var.user
+     password = var.password
    }
-
    inline = [
       "export iac_portal=${var.iac_portal}",
       "export ct_runner=${var.ct_runner}",

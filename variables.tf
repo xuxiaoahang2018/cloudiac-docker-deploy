@@ -52,3 +52,15 @@ variable "consul" {
   default = "consul:latest"
   description = "consul 镜像地址以及版本"
 }
+
+variable "user" {
+  default = "root"
+  description = "ssh 连接机器用户名"
+  sensitive = true
+}
+
+variable "password" {
+  default = "User@1234"
+  description = "ssh 连接机器密码"
+  sensitive = true
+}
