@@ -39,7 +39,8 @@ resource "alicloud_instance" "instance" {
       "export iac_web=${var.iac_web}",
       "export mysql=${var.mysql}",
       "export consul=${var.consul}",
-      "curl https://cloudiac.oss-cn-beijing.aliyuncs.com/docker_deploy_new.sh | sh",
+      "export docker_pw=${var.docker_pw}",
+      "curl https://cloudiac.oss-cn-beijing.aliyuncs.com/docker_yunji_deploy.sh | sh",
    ]
   }
 	

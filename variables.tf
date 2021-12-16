@@ -9,7 +9,7 @@ variable "instance_type" {
 }
 
 variable "instance_name" {
-  default = "tf_ecs_test"
+  default = "tf_ecs_test5"
   description = "创建的ecs服务器名称"
 }
 
@@ -63,4 +63,7 @@ variable "password" {
   default = "User@1234"
   description = "ssh 连接机器密码"
   sensitive = true
+}
+
+variable "docker_pw" {
 }
